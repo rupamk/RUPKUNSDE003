@@ -1,0 +1,5 @@
+requests==2.19.1
+bs4==0.0.1
+mechanize==0.3.7
+jsonschema==2.6.0
+wxPython==4.0.2
