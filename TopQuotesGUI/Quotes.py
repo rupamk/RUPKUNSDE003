@@ -1,7 +1,7 @@
 '''
 Author: Rupam Kundu, The Ohio State University
 '''
-import mechanize
+#import mechanize
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -250,6 +250,9 @@ class GoodRead():
             json_data = json.load(data_file)
         return json_data
 
+
+#%-----------------------------------------------------EOF------------------------------------------------------------%/
+
 if __name__ == "__main__":
     obj = GoodRead()
     obj.set_base_url("https://www.goodreads.com/")
@@ -278,9 +281,6 @@ if __name__ == "__main__":
             obj.get_top_quotes(obj.author_query,obj.numQuotes,obj.query_url,obj.filename,True)
         if not obj.exitcondition:
             obj.dumpjson(obj.jsondata, obj.filename)
-#%-----------------------------------------------------EOF------------------------------------------------------------%/
-
-
 
 
 

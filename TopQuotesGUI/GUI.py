@@ -5,14 +5,13 @@ Author: Rupam Kundu, The Ohio State University
 '''
 import os
 import wx
-import wx.lib.platebtn as platebtn
 from Quotes import GoodRead
 import wx.lib.agw.hyperlink as hl
 import json
 from Get_quotes import Get_quotes
 from Authenticate import Authenticate
 import os.path
-from test_quotes import TestMethods
+from Test_quotes import TestMethods
 import unittest
 
 class GoodReadGUI(wx.Frame):

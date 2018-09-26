@@ -1,4 +1,4 @@
-from quotes import GoodRead
+from Quotes import GoodRead
 
 
 def Authenticate(email,password):
@@ -8,5 +8,5 @@ def Authenticate(email,password):
     obj.set_password(password)
     obj.set_credential()
 
- if __name__ == '__main__':
-     Authenticate()
+if __name__ == '__main__':
+    Authenticate()
