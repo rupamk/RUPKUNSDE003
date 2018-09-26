@@ -21,6 +21,10 @@
 ## Running Sample:TopQuotesGUI
 
     fwpy TopQuotesGUI/GUI.py 
+    
+    
+### GUI
+![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/GetFbPostGUI/GetFbPostGUI.png)
 
 ## To Exit VirtualEnv:
 
@@ -28,3 +32,4 @@
 
 
     
+
