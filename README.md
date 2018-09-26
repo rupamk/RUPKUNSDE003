@@ -24,7 +24,7 @@
 
 ## To Exit VirtualEnv:
 
-    >>deactivate
+    deactivate
 
 
     
