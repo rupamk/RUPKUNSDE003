@@ -1,7 +1,7 @@
 '''
 Author: Rupam Kundu, The Ohio State University
 '''
-#import mechanize
+import mechanize
 import requests
 from bs4 import BeautifulSoup
 import json

@@ -75,7 +75,7 @@ class Fbpagepostquery(object):
                     }
                     )
                 self.dumpjson(data)
-                self.outputjson(numPost)
+                #self.outputjson(numPost)
             except  (ConnectTimeout, HTTPError, ReadTimeout, Timeout, ConnectionError) as e:
                 print(e)
         except ValueError as e:
@@ -84,7 +84,7 @@ class Fbpagepostquery(object):
 
     def dumpjson(self,data):
         try:
-            path = "./GetFbPost/Data/"
+            path = "./GetFbPostGUI/Data/"
             if data==  {"Top Facebook Post": []}:
                 raise ValueError('No post found')
             self.set_postquery_name()
@@ -103,7 +103,7 @@ class Fbpagepostquery(object):
                 raise ValueError('Empty Filename')
             print('Top ' + str(x) + ' Posts of ' + str(self.page_query))
             print("-------------------------------------------------------")
-            path = "./GetFbPost/Data/"
+            path = "./GetFbPostGUI/Data/"
             index = "Top " + self.page_query + " Facebook Post"
             with open(path+self.filename) as json_file:
                 data = json.load(json_file)

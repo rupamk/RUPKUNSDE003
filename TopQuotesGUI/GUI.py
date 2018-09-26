@@ -117,7 +117,7 @@ class GoodReadGUI(wx.Frame):
                     raise ValueError('No author name provided')
                 if not self.numpost_field.GetValue():
                     raise ValueError('Please provide something in the Number of Post field')
-                get_quotes(self.author_field.GetValue(), self.numpost_field.GetValue())
+                Get_quotes(self.author_field.GetValue(), self.numpost_field.GetValue())
                 text = self.author_field.GetValue().split(' ')
                 s = ''
                 for item in text:
