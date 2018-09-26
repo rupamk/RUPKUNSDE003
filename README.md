@@ -20,14 +20,16 @@
     
     
 ### GetFbPostGUI UserInterface
-    ![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/GetFbPostGUI/GetFbPostGUI.png)
+
+![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/GetFbPostGUI/GetFbPostGUI.png)
         
 ## Running Sample:TopQuotesGUI
 
     fwpy TopQuotesGUI/GUI.py 
     
 ### TopQuotesGUI UserInterface
-    ![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/TopQuotesGUI/Quotes.py)
+
+![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/TopQuotesGUI/Quotes.py)
 
 ## To Exit VirtualEnv:
 
