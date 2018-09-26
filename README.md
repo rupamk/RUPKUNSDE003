@@ -13,7 +13,7 @@
 
 ## Running Sample:
 
-    >>(venv) Rupams-MacBook-Pro:RUPKUNSDE002 rupamkundu$ python TopQuotes/GUI.py 
+    >>(venv) Rupams-MacBook-Pro:RUPKUNSDE002 rupamkundu$ python TopQuotesGUI/GUI.py 
 
 ## To Exit VirtualEnv:
 
