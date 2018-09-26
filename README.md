@@ -4,7 +4,7 @@
     virtualenv==15.1.0
 
 ## Instructions to set-up:
-    >>git clone git@github.com:rupamk/RUPKUNSDE001.git
+    >>git clone git@github.com:rupamk/RUPKUNSDE003.git
     >>cd RUPKUNSDE003
     >> pip install virtualenv
     >>virtualenv venv
