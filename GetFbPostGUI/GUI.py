@@ -33,7 +33,7 @@ class ScrapeFbdataGUI(wx.Frame):
         self.header2 = wx.StaticText(self.panel,
                                      label="Note: Make sure to input the proper Facebook Page Name as appears as * in https://www.facebook.com/*")
         self.header2.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
-        self.header2.SetForegroundColour("green")
+        self.header2.SetForegroundColour("white")
         self.page = wx.StaticText(self.panel,
                                     label="Enter the name of the page:")
         self.page.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
