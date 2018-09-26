@@ -29,7 +29,7 @@
     
 ### TopQuotesGUI UserInterface
 
-![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/TopQuotesGUI/Quotes.py)
+![alt text](https://github.com/rupamk/RUPKUNSDE003/blob/master/TopQuotesGUI/QuotesGUI.png)
 
 ## To Exit VirtualEnv:
 
