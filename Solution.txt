@@ -1,0 +1,10 @@
+3) Considering that a non-technical savvy person will be the end-user of the programs you coded (challenging 1 and 2), add an User Interface to the previous two code challenging you created and instructions on how to use them. Note: be creative, but don’t add unnecessary features to your UI.
+
+
+For UI design, I have used wxPython. However the setup is slightly different here since to run wxPython the framework version of python is used.
+
+PYVER=2.7
+PYTHON=/opt/local/Library/Frameworks/Python.framework/Versions/$PYVER/bin/python$PYVER
+virtualenv --python=$PYTHON venv
+
+fwpy is used to call the python framework instead of the usual python
