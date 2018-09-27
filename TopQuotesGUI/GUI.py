@@ -1,7 +1,7 @@
 #!/ven/bin/env python
 '''
-Expedia Coding Challenge
 Author: Rupam Kundu, The Ohio State University
+GUI for TopQuotes
 '''
 import os
 import wx
@@ -159,8 +159,7 @@ class GoodReadGUI(wx.Frame):
                                 print('********************************************************')
                         except ValueError as e:
                             print(e)
-
-                #os.remove(path+name+ '_top_quotes.json')
+                    os.rename(path+name+ '_top_quotes.json',path+name+ '_TOPQuotes.json')
             except ValueError as e:
                 print(e)
 

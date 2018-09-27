@@ -1,0 +1,9 @@
+#!/bin/bash
+
+PYVER=2.7
+PYTHON=/opt/local/Library/Frameworks/Python.framework/Versions/$PYVER/bin/python$PYVER
+
+ENV=`$PYTHON -c "import os; print os.path.abspath(os.path.join(os.path.dirname(\"$0\"), '..'))"`
+
+export PYTHONHOME=$ENV 
+exec $PYTHON "$@"

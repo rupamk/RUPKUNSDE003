@@ -164,6 +164,10 @@ class GoodRead():
         try:
             if num==0 or num<0:
                 raise ValueError('Number of quotes should be >=1')
+            
+            if num>=100:
+                raise ValueError('Number of quotes should be <100')
+            
             if type(num) is not int:
                 raise ValueError('Num of Quotes should be an Integer Value')
             if not all(x.isdigit() for x in str(num)):
@@ -254,7 +258,7 @@ class GoodRead():
         with open(path+filename, 'w') as outfile:
             json.dump(data, outfile)
         print("-------------------------------------------------------")
-        print("Check " + self.filename + " in ./TopQuotesGUI/Data/ ")
+        print("Check inside  in ./TopQuotesGUI/Data/ ")
         print("-------------------------------------------------------")
 
     def outputjson(self,author,x):
@@ -284,34 +288,34 @@ class GoodRead():
 
 #%-----------------------------------------------------EOF------------------------------------------------------------%/
 
-if __name__ == "__main__":
-    obj = GoodRead()
-    obj.set_base_url("https://www.goodreads.com/")
-    print("-------------------------------------------------")
-    print("---------Authentication to Goodreads.com---------")
-    print("-------------------------------------------------")
-    # print('')
-    # print("-----------------Attempt 0-------------------------")
-    # print('')
-    obj.set_email(raw_input('Please Enter your GoodReads.com email address:'))
-    print('')
-    obj.set_password(raw_input('Please Enter your GoodReads.com password:'))
-    print('')
-    if not obj.exitcondition:
-        obj.set_credential()
-    '''Get Quotes'''
-    if(obj.auth_flag):
-        obj.set_author_query("Mark Twain")#Douglas Adams
-        if not obj.exitcondition:
-            obj.set_numQuotes(10)
-        if not obj.exitcondition:
-            obj.set_query_url()
-        if not obj.exitcondition:
-            obj.set_quotesquery_name()
-        if not obj.exitcondition:
-            obj.get_top_quotes(obj.author_query,obj.numQuotes,obj.query_url,obj.filename,True)
-        if not obj.exitcondition:
-            obj.dumpjson(obj.jsondata, obj.filename)
+#if __name__ == "__main__":
+#    obj = GoodRead()
+#    obj.set_base_url("https://www.goodreads.com/")
+#    print("-------------------------------------------------")
+#    print("---------Authentication to Goodreads.com---------")
+#    print("-------------------------------------------------")
+#    # print('')
+#    # print("-----------------Attempt 0-------------------------")
+#    # print('')
+#    obj.set_email(raw_input('Please Enter your GoodReads.com email address:'))
+#    print('')
+#    obj.set_password(raw_input('Please Enter your GoodReads.com password:'))
+#    print('')
+#    if not obj.exitcondition:
+#        obj.set_credential()
+#    '''Get Quotes'''
+#    if(obj.auth_flag):
+#        obj.set_author_query("Mark Twain")#Douglas Adams
+#        if not obj.exitcondition:
+#            obj.set_numQuotes(10)
+#        if not obj.exitcondition:
+#            obj.set_query_url()
+#        if not obj.exitcondition:
+#            obj.set_quotesquery_name()
+#        if not obj.exitcondition:
+#            obj.get_top_quotes(obj.author_query,obj.numQuotes,obj.query_url,obj.filename,True)
+#        if not obj.exitcondition:
+#            obj.dumpjson(obj.jsondata, obj.filename)
 
 
 

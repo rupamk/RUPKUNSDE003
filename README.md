@@ -7,8 +7,10 @@
 ## Instructions to set-up:
     git clone git@github.com:rupamk/RUPKUNSDE003.git
     cd RUPKUNSDE003
+    PYVER=2.7
+    PYTHON=/opt/local/Library/Frameworks/Python.framework/Versions/$PYVER/bin/python$PYVER
     pip install virtualenv
-    virtualenv venv
+    virtualenv --python=$PYTHON venv
     source venv/bin/activate
     cp fwpy ./venv/bin/
     chmod +x ./venv/bin/fwpy
@@ -17,7 +19,6 @@
 ## Running Sample:GetFbPostGUI
 
     fwpy GetFbPostGUI/GUI.py 
-    
     
 ### GetFbPostGUI UserInterface
 

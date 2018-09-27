@@ -56,6 +56,8 @@ class Fbpagepostquery(object):
                 raise ValueError('Number of Post should be an Integer')
             if numPost==0 or numPost<0:
                 raise ValueError('Number of Post should be >=1')
+            if numPost>=20:
+                raise ValueError('Number of Post should be <20')
             try:
                 page = requests.get(self.page_link, timeout=6.0)
                 soup = BeautifulSoup(page.content, 'html.parser')
@@ -91,7 +93,7 @@ class Fbpagepostquery(object):
             with open(path+self.filename, 'w') as outfile:
                 json.dump(data, outfile)
             print("-------------------------------------------------------")
-            print("Check " + path + self.filename)
+            print("Check inside" + path)
             print("-------------------------------------------------------")
         except ValueError as e:
             self.exitcondition = True
@@ -114,11 +116,11 @@ class Fbpagepostquery(object):
             self.exitcondition = True
             print(e)
 
-if __name__ == "__main__":
-    obj = Fbpagepostquery()
-    '''Get Posts'''
-    obj.set_page_query("expedia")
-    obj.get_top_post(10)
+#if __name__ == "__main__":
+#    obj = Fbpagepostquery()
+#    '''Get Posts'''
+#    obj.set_page_query("expedia")
+#    obj.get_top_post(10)
 
 #%-----------------------------------------------------EOF------------------------------------------------------------%/
 

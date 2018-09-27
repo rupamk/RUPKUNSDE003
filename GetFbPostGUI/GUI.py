@@ -96,7 +96,7 @@ class ScrapeFbdataGUI(wx.Frame):
                                 print('****************************************')
                         except ValueError as e:
                             print(e)
-                    #os.remove(path + 'Top_' + name + '_Facebook_Post.json')
+                    os.rename(path + 'Top_' + name + '_Facebook_Post.json', path + 'Top_' + name + '_FB_Post.json')
             except ValueError as e:
                 print(e)
 

@@ -30,8 +30,7 @@ def Get_quotes(author,numPosts):
             obj.set_quotesquery_name()
         if not obj.exitcondition:
             obj.get_top_quotes(obj.author_query, obj.numQuotes, obj.query_url, obj.filename)
-        if not obj.exitcondition:
-            obj.dumpjson(obj.jsondata, obj.filename)
+
         return obj.filename
     except ValueError as e:
         print(e)
