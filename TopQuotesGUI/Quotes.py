@@ -225,7 +225,7 @@ class GoodRead():
                     authorOrTitle = str(post[i].find("span", class_="authorOrTitle").text).rstrip().lstrip()
                     if (author in authorOrTitle or author.lower() in authorOrTitle or author.upper() in authorOrTitle):
                         val = post[i].get_text()
-                        content = val.encode("utf-8").replace('\n', '')  # self.clean_quotes(val.encode("utf-8"))
+                        content = val.encode("utf-8").split("\n      \xe2\x80\x9c")[1].replace('\n', '')  # self.clean_quotes(val.encode("utf-8"))
                         data[index].append({
                             'Content': content,
                             'Author': author
