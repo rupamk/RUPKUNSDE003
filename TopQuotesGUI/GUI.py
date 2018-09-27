@@ -26,44 +26,55 @@ class GoodReadGUI(wx.Frame):
         self.panel.Fit()
         self.panel.SetBackgroundColour("gray")
         # Authenticate Me
-        self.header1 = wx.StaticText(self.panel, label="Authenticate your credentials to Goodread.com")
+        self.header1 = wx.StaticText(self.panel, label="Authenticate your credentials to Goodreads.com")
         self.header1.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.header1.SetForegroundColour("blue")
+
         self.warning = wx.StaticText(self.panel,
                                      label="NOTE: If you have not created an account yet go ahead and create an account at Goodreads.com ")
         self.warning.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.warning.SetForegroundColour("white")
+
         self.email = wx.StaticText(self.panel,label="Email")
         self.email.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.email_field = wx.TextCtrl(self, value="", size=(300, 20))
+
         self.password = wx.StaticText(self.panel,label="Password")
         self.password.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
-        self.password_field = wx.TextCtrl(self, value="", size=(300, 20))
+        self.password_field = wx.TextCtrl(self, value="", size=(300, 20), style=wx.TE_PASSWORD)
+
         self.link = hl.HyperLinkCtrl(self.panel, -1, "Link to Goodreads.com", pos=(100, 100),URL="https://www.goodreads.com/user/sign_in")
         self.link.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.NORMAL, False, 'Courier'))
+
         self.authenticate_me = wx.Button(self.panel, label="Authenticate me", )
         self.authenticate_me.SetFont(wx.Font(15, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, False, 'Times'))
         self.authenticate_me.SetBackgroundColour("Gray")
+
         #Get Quotes
         self.header2 = wx.StaticText(self.panel,
                                      label="Get the top quotes from Goodread.com")
         self.header2.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.header2.SetForegroundColour("blue")
+
         self.author = wx.StaticText(self.panel,
-                                     label="Enter the name of the author:")
+                                     label="Enter the name of the author(For abbreviated author names put the appropriate '.'s. Like J.K. Rowling):")
         self.author.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.author_field = wx.TextCtrl(self, value="", size=(300, 20))
+
         self.numpost = wx.StaticText(self.panel,
-                                     label="Number of Post:")
+                                     label="Number of Post (0<Input<100):")
         self.numpost.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.numpost_field = wx.TextCtrl(self, value="", size=(300, 20))
+
         self.get_quotes = wx.Button(self.panel, label="Get Quotes", )
         self.get_quotes.SetFont(wx.Font(15, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, False, 'Times'))
         self.get_quotes.SetBackgroundColour("Gray")
+
         # Run Unit Test
         self.run_unit_test = wx.Button(self.panel, label="Run Unit Test For User Authentication and Get Quotes" )
         self.run_unit_test.SetFont(wx.Font(15, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, False, 'Times'))
         self.run_unit_test.SetBackgroundColour("Gray")
+
         #Consolidate
         self.windowSizer = wx.BoxSizer()
         self.windowSizer.Add(self.panel, 1, wx.ALL | wx.EXPAND)
@@ -97,7 +108,7 @@ class GoodReadGUI(wx.Frame):
         button = event.GetEventObject()
         if(button.GetLabel()=="Run Unit Test For User Authentication and Get Quotes"):
             print('Check Terminal for output')
-            os.system('python test_quotes.py')
+            os.system('python TopQuotesGUI/Test_quotes.py')
 
 
         if(button.GetLabel()=="Authenticate me"):
@@ -126,7 +137,11 @@ class GoodReadGUI(wx.Frame):
                 path = "./TopQuotesGUI/Data/"
                 temp = []
                 for item in str(self.author_field.GetValue()).split(' '):
-                    temp.append(item.lower().capitalize())
+                    if '.' in item:
+                        item = [x.capitalize() for x in item.split('.')]
+                        temp.append('.'.join(item))
+                    else:
+                        temp.append(item.lower().capitalize())
                 author = ' '.join(temp)
                 if(os.path.isfile(path+name+ '_top_quotes.json')):
 
@@ -135,16 +150,17 @@ class GoodReadGUI(wx.Frame):
                     with open(path+name+ '_top_quotes.json') as json_file:
                         data = json.load(json_file)
                         try:
-                            if not data[index]:
+                            if not data or not data[index]:
                                 raise  ValueError('No data to print')
                             for i,p in enumerate(data[index]):
+                                print('Quotes ' + str(i))
                                 print(p['Content'])
                                 print('')
                                 print('********************************************************')
                         except ValueError as e:
                             print(e)
 
-                    os.remove(path+name+ '_top_quotes.json')
+                #os.remove(path+name+ '_top_quotes.json')
             except ValueError as e:
                 print(e)
 

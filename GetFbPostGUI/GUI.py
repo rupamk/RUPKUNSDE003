@@ -2,6 +2,7 @@
 '''
 Expedia Coding Challenge
 Author: Rupam Kundu, The Ohio State University
+GUI for Scrape Fb Page Posts
 '''
 import os
 import wx
@@ -21,30 +22,36 @@ class ScrapeFbdataGUI(wx.Frame):
     def InitUI(self):
         self.panel = wx.Panel(self)
         self.panel.Fit()
-        self.panel.SetBackgroundColour("gray")
+        self.panel.SetBackgroundColour("Gray")
 
         # Get Fb page
         self.header1 = wx.StaticText(self.panel,
                                      label="Get the top posts of a Facebook Page")
         self.header1.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.header1.SetForegroundColour("blue")
+
         self.link = hl.HyperLinkCtrl(self.panel, -1, "Link to Facebook.com", pos=(100, 100),
                                      URL="https://www.facebook.com/")
+
         self.header2 = wx.StaticText(self.panel,
                                      label="Note: Make sure to input the proper Facebook Page Name as appears as * in https://www.facebook.com/*")
         self.header2.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.header2.SetForegroundColour("white")
+
         self.page = wx.StaticText(self.panel,
                                     label="Enter the name of the page:")
         self.page.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.page_field = wx.TextCtrl(self, value="", size=(300, 20))
+
         self.numpost = wx.StaticText(self.panel,
-                                     label="Number of Post:")
+                                     label="Number of Post(0<Input<20):")
         self.numpost.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.numpost_field = wx.TextCtrl(self, value="", size=(300, 20))
+
         self.get_post = wx.Button(self.panel, label="Get Posts")
         self.get_post.SetFont(wx.Font(15, wx.SWISS, wx.NORMAL, wx.FONTWEIGHT_BOLD, False, 'Times'))
         self.get_post.SetBackgroundColour("Gray")
+
         # Consolidate
         self.windowSizer = wx.BoxSizer()
         self.windowSizer.Add(self.panel, 1, wx.ALL | wx.EXPAND)
@@ -89,13 +96,12 @@ class ScrapeFbdataGUI(wx.Frame):
                                 print('****************************************')
                         except ValueError as e:
                             print(e)
-                    os.remove(path + 'Top_' + name + '_Facebook_Post.json')
+                    #os.remove(path + 'Top_' + name + '_Facebook_Post.json')
             except ValueError as e:
                 print(e)
 
 def main():
     app = wx.App(redirect=True)
-
     ex = ScrapeFbdataGUI(None, title='Scrape Fb Page Posts')
     ex.Show()
     app.MainLoop()

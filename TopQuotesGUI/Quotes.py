@@ -34,7 +34,11 @@ class GoodRead():
                 raise ValueError('Name cannot contain Numbers! Enter proper author name !')
             temp = []
             for item in author.split(' '):
-                 temp.append(item.lower().capitalize())
+                if '.' in item:
+                    item = [x.capitalize() for x in item.split('.')]
+                    temp.append('.'.join(item))
+                else:
+                    temp.append(item.lower().capitalize())
             self.author_query = ' '.join(temp)
         except ValueError as e:
             self.exitcondition = True
@@ -82,7 +86,7 @@ class GoodRead():
         try:
             if not username:
                 raise ValueError('Empty email! please provide a proper email!')
-            self.email = str(username)
+            self.email = str(username).lstrip().rstrip()
             return self.email
         except ValueError as e:
             self.exitcondition = True
@@ -93,7 +97,7 @@ class GoodRead():
         try:
             if not password:
                 raise ValueError('Empty password! please provide a proper password!')
-            self.password = str(password)
+            self.password = str(password).lstrip().rstrip()
             return self.password
         except ValueError as e:
             self.exitcondition = True
@@ -152,7 +156,9 @@ class GoodRead():
     def clean_quotes(self,s):
         start = "\n      \xe2\x80\x9c"
         end = ".\xe2\x80\x9d\n    \xe2\x80\x95\n  \n    "+self.author_query
-        return s.split(start)[1].split(end)[0]
+        end1 = ".\xe2\x80\x9d\n    \xe2\x80\x95\n  \n    "+self.author_query.lower()
+        end2 = ".\xe2\x80\x9d\n    \xe2\x80\x95\n  \n    "+self.author_query.upper()
+        return s.split(start)[1].split(end)[0].split(end1)[0].split(end2)[0]
 
     def set_numQuotes(self,num):
         try:
@@ -168,48 +174,73 @@ class GoodRead():
             print(e)
             return e
 
+    def gen_url(self,author, page):
+
+        return self.base_url + "quotes/search?&commit=Search&page="+ str(page)+"&q=" + author
+
+
     def get_top_quotes(self,author, numQuotes,query_url,filename,isPrint = False):
         try:
+
             if not query_url:
                 raise ValueError('Please provide a Link properly')
-            try:
-                page = requests.get(query_url, timeout=6.0)
-            except  (ConnectTimeout, HTTPError, ReadTimeout, Timeout, ConnectionError) as e:
-                self.exitcondition = True
-                print(e)
-                return e
+
             if type(numQuotes) is not int:
                   raise ValueError('Num of Quotes should be an Integer Value')
             self.numQuotes = int(numQuotes)
             if not author:
                 raise ValueError('Please provide an author name properly.')
-            soup = BeautifulSoup(page.content, 'html.parser')
-            post = soup.find_all('div', {'class': 'quoteText'})
-            for script in soup.find_all('script'):
-                script.extract()
-            if len(post)==0:
-                raise ValueError('No quotes Found')
+
+            count = self.numQuotes
+            page_count = 1
+
             data = {}
             index = "Quotes By:" + author
             data[index] = []
-            self.numQuotes = min(self.numQuotes, len(post))
-            i = 0
-            count = self.numQuotes
-            while count > 0 and i < len(post):
-                if (author == str(post[i].find("span", class_="authorOrTitle").text).rstrip().lstrip()):
-                    val =post[i].get_text()
-                    content = self.clean_quotes(val.encode("utf-8"))
-                    data[index].append({
-                        'Content': content,
-                        'Author': author
-                    }
-                    )
-                    count -= 1
-                i += 1
-            if len(data)==0:
-                raise ValueError('No quotes Found')
+
+            while True:
+                try:
+                    page = requests.get(query_url, timeout=6.0)
+                except  (ConnectTimeout, HTTPError, ReadTimeout, Timeout, ConnectionError) as e:
+                    self.exitcondition = True
+                    print(e)
+                    return e
+
+                soup = BeautifulSoup(page.content, 'html.parser')
+                post = soup.find_all('div', {'class': 'quoteText'})
+                for script in soup.find_all('script'):
+                    script.extract()
+
+                if len(post) == 0 and page_count==1:
+                    raise ValueError('No quotes Found')
+                elif len(post) == 0 and page_count>1:
+                    break
+
+                i = 0
+                while i < len(post):
+                    authorOrTitle = str(post[i].find("span", class_="authorOrTitle").text).rstrip().lstrip()
+                    if (author in authorOrTitle or author.lower() in authorOrTitle or author.upper() in authorOrTitle):
+                        val = post[i].get_text()
+                        content = val.encode("utf-8").replace('\n', '')  # self.clean_quotes(val.encode("utf-8"))
+                        data[index].append({
+                            'Content': content,
+                            'Author': author
+                        }
+                        )
+                        count -= 1
+                        if count==0: break
+                    i += 1
+
+                if count==0:
+                    break
+
+                page_count = page_count + 1
+                query_url = self.gen_url(author, page_count)
+
+
             self.jsondata = data
-            self.dumpjson(self.jsondata,filename)
+            self.dumpjson(self.jsondata, filename)
+
             if isPrint:
                 self.outputjson(author,self.numQuotes)
             return data
@@ -223,7 +254,7 @@ class GoodRead():
         with open(path+filename, 'w') as outfile:
             json.dump(data, outfile)
         print("-------------------------------------------------------")
-        print("Check " + self.filename + " in ./TopQuotes/Data/ ")
+        print("Check " + self.filename + " in ./TopQuotesGUI/Data/ ")
         print("-------------------------------------------------------")
 
     def outputjson(self,author,x):
@@ -270,7 +301,7 @@ if __name__ == "__main__":
         obj.set_credential()
     '''Get Quotes'''
     if(obj.auth_flag):
-        obj.set_author_query("Mark Twain")
+        obj.set_author_query("Mark Twain")#Douglas Adams
         if not obj.exitcondition:
             obj.set_numQuotes(10)
         if not obj.exitcondition:

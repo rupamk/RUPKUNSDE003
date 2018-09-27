@@ -99,16 +99,6 @@ class TestMethods(unittest.TestCase):
             obj.get_top_quotes("Mark XYZ", 0, "",
                                "abc.json"))
 
-    #@unittest.skip('')
-    def test_mark_twain_author_get_quotes(self):
-        obj = GoodRead()
-        observed_dat1 = obj.get_top_quotes("Mark Twain", 2, "https://www.goodreads.com/quotes/search?&q=mark+twain&commit=Search", "abc.json")
-
-        actual_data = {"Quotes By:Mark Twain": [
-            {"Content": "If you tell the truth, you don't have to remember anything", "Author": "Mark Twain"},
-            {"Content": "Good friends, good books, and a sleepy conscience: this is the ideal life",
-             "Author": "Mark Twain"}]}
-        self.assertEqual(actual_data, observed_dat1)
     ''''''
 
 if __name__ == '__main__':
