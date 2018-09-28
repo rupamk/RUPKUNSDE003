@@ -62,7 +62,7 @@ class GoodReadGUI(wx.Frame):
         self.author_field = wx.TextCtrl(self, value="", size=(300, 20))
 
         self.numpost = wx.StaticText(self.panel,
-                                     label="Number of Post (0<Input<100):")
+                                     label="Number of Quotes (0<Input<100):")
         self.numpost.SetFont(wx.Font(15, wx.SWISS, wx.ITALIC, wx.BOLD, False, 'Courier'))
         self.numpost_field = wx.TextCtrl(self, value="", size=(300, 20))
 
