@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 '''
-Expedia Coding Challenge
 Author: Rupam Kundu, The Ohio State University
 GUI for Scrape Fb Page Posts
 '''
