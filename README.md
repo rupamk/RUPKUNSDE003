@@ -2,7 +2,7 @@
 
 ## Requirement: 
     virtualenv==15.1.0
-    MAC OS/Linux
+    MAC OS/Linux (wxPython installation differs for each OS)
 
 ## Instructions to set-up:
 
