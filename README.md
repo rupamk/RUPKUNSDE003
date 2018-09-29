@@ -23,17 +23,17 @@
 
 1. UBUNTU 18.04
 
-	virtualenv venv
-	source venv/bin/activate
-	pip install -r requirements_linux.txt
-	pip install -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-18.04 wxPython
+		virtualenv venv
+		source venv/bin/activate
+		pip install -r requirements_linux.txt
+		pip install -f https://extras.wxpython.org/wxPython4/extras/linux/gtk3/ubuntu-18.04 wxPython
 
 2. UBUNTU 16.04
 
-	virtualenv venv
-	source venv/bin/activate
-	pip install -r requirements_linux.txt
-	pip install -f https://wxpython.org/pages/downloads/ wxPython
+		virtualenv venv
+		source venv/bin/activate
+		pip install -r requirements_linux.txt
+		pip install -f https://wxpython.org/pages/downloads/ wxPython
 
 ## Running Sample:GetFbPostGUI
 
