@@ -33,7 +33,7 @@
 		virtualenv venv
 		source venv/bin/activate
 		pip install -r requirements_linux.txt
-		pip install -f https://wxpython.org/pages/downloads/ wxPython
+		pip install -f https://wxpython.org/pages/downloads/ubuntu-16.04 wxPython
 
 ## Running Sample:GetFbPostGUI
 
